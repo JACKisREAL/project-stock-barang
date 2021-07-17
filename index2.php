@@ -1,4 +1,22 @@
-<!DOCTYPE html>
+<?php
+session_start();
+if(!(isset($_SESSION['LOGIN']))){
+    header("location:login/login2.php");
+}
+if(isset($_GET['out'])){
+    $out=$_GET['out'];
+    if($out == "keluar"){
+        if(isset($_SESSION['LOGIN'])){
+            unset($_SESSION['LOGIN']);
+            session_unset();
+            session_destroy();
+            $_SESSION=array();
+            }
+    header("location: login/login2.php");
+    exit();}
+}
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -195,7 +213,7 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link" href="index2.html">
+                            <a class="nav-link" href="index2.php">
                                 <i class="fas fa-sync-alt fa-2x"></i>
                             </a>
                         </li>
@@ -213,7 +231,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <a class="nav-link" href="#"><i class="fas fa-table fa-1x rounded-circle" alt="...">
+                                        <a class="nav-link" href="meja.php"><i class="fas fa-table fa-1x rounded-circle" alt="...">
                                         </i><h8 class="text-truncate">| TABLE</h8></a>
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -275,7 +293,7 @@
                                 <a href="#" class="nav-bar-item nav-button">Profile</a><h7>|</h7>
                                 <a href="#" class="nav-bar-item nav-button">Setting</a><h7>|</h7>
                                 <a href="#" class="nav-bar-item nav-button">Activity log</a><h7>|</h7>
-                                <a href="#" class="nav-bar-item nav-button">Log out</a>
+                                <a href="index2.php?out=keluar" class="nav-bar-item nav-button">Log out</a>
                                 <div style="text-align: center;">
                                     <button onclick="nav_close()" class="fas fa-eye-slash"></button>
                                 </div>
@@ -333,7 +351,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                             Earnings (Annual)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rp 5000000000,00</div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
